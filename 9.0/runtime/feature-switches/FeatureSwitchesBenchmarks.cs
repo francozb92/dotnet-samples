@@ -3,11 +3,14 @@ using BenchmarkDotNet.Attributes;
 [MemoryDiagnoser]
 public class FeatureSwitchesBenchmarks
 {
-  [Benchmark]
-  public void Feature_IsSupported_Disabled()
-  {
-    if (Feature.IsSupported)
-    Feature.Implementation();
-  }
+  [Params(true, false)]
+  public bool IsSupported { get; set; }
 
+  [Benchmark]
+  public void FeatureSwitches_Benchmark()
+  {
+    if (IsSupported){
+         Feature.Implementation();
+    }  
+  }
 }

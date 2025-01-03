@@ -7,12 +7,11 @@ var summary = BenchmarkRunner.Run<FeatureSwitchesBenchmarks>();
 
 
 //Base example
-
 public class Feature
 {
     [FeatureSwitchDefinition("Feature.IsSupported")]
     internal static bool IsSupported => AppContext.TryGetSwitch("Feature.IsSupported", out bool isEnabled) ? isEnabled : true;
-
+    internal static bool IsTrimmed => AppContext.TryGetSwitch("Feature.IsTrimmed", out bool isTrimmed) ? isTrimmed : true;
     internal static void Implementation() => Console.WriteLine("Hello from feature enabled!");
 }
 
