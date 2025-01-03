@@ -9,9 +9,12 @@
   </PropertyGroup>
   <ItemGroup>
     <RuntimeHostConfigurationOption Include="Feature.IsSupported" Value="false" Trim="true" />
+    <RuntimeHostConfigurationOption Include="APIFeature.OnlyCompleted" Value="false" Trim="true" />
+    <RuntimeHostConfigurationOption Include="APIFeature.OnlyTodo" Value="false" Trim="true" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
   </ItemGroup>
 
 

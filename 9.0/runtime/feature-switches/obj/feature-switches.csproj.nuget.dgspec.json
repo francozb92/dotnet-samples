@@ -49,6 +49,10 @@
             "BenchmarkDotNet": {
               "target": "Package",
               "version": "[0.14.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
