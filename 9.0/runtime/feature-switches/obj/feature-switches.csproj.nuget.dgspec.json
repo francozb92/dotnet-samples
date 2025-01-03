@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj": {}
+    "c:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj": {
+    "c:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj",
+        "projectUniqueName": "c:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj",
         "projectName": "feature-switches",
-        "projectPath": "C:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj",
+        "projectPath": "c:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\feature-switches.csproj",
         "packagesPath": "C:\\Users\\FRANCO\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\obj\\",
+        "outputPath": "c:\\Users\\FRANCO\\source\\repos\\dotnet-samples\\9.0\\runtime\\feature-switches\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\FRANCO\\AppData\\Roaming\\NuGet\\NuGet.Config",

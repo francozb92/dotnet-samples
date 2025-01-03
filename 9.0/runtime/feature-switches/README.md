@@ -4,7 +4,7 @@
 
 # feature switches
 
-- Base Example
+- Base Feature Switches Example
 
 - Running and testing feature switches with benchmarking capabilities using BenchmarkDotNet
 
@@ -27,10 +27,28 @@ Intel Core i7-2620M CPU 2.70GHz (Sandy Bridge), 1 CPU, 4 logical and 2 physical 
 
 - We can conclude there is a significant percentage difference between both benchmarks
 
-- API Example
+- API Feature Switch Example
 
 This example using feature switches in dotnet 9 effectively demonstrates a different way of versioning an API (Obsolete, Deprecated, Outdated, NotRelevant, etc.) when publishing to different consumers and their requirements where an exposed endpoint does not need to be available thus reducing application size and conformance.
 
 **Note that feature switches are only available with minimal APIs and not for controller based APIs**
 
 **Software teams benefit tremendously when adopting minimal APIs due to modern ways of architecting solutions (microservices architecture) and their ability to adapt to change in high paced agile environments**
+
+The following table demonstrates the resulting API when using feature switches for OnlyCompleted items and OnlyTodo items
+
+* OnlyCompleted
+
+| HTTP Verb  | OnlyCompleted         |
+| ---------- | --------------------- |
+| GET        | "/todoitems/complete" |
+
+* OnlyTodo
+
+| HTTP Verb  | OnlyTodo          |
+| ---------- | ----------------- |
+| GET        | "/todoitems"      |
+| GET        | "/todoitems/{id}" |
+| POST       | "/todoitems"      |
+| PUT        | "/todoitems/{id}" |
+| DELETE     | "/todoitems/{id}" |
