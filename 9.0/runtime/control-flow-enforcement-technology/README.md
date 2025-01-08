@@ -10,3 +10,13 @@ Putting this in perspective we will exemplify an easy scenario where this can be
 
 ![CET easy Example](./assets/cet-easy-example.png)
 
+Now we will create a relevant example where this new feature was intended to be more applicable to. We will add a buffer overflow example in Program.cs. It is important to note that in this example, the Buffer.BlockCopy method is used to copy the input string into a byte array. The Buffer.BlockCopy method does not check if the destination buffer is large enough to hold the entire input string. If the input string is longer than the buffer, the extra characters will overwrite the memory after the buffer, which can lead to a buffer overflow vulnerability.
+
+To exploit this vulnerability, an attacker could provide a very long input string, which would cause the extra characters to overwrite the memory after the buffer by gaining control of the flow execution of the program. This could potentially allow the attacker to execute arbitrary code or manipulate the program's behavior.
+
+**Again, please note that exploiting buffer overflows is illegal and can cause serious security issues. It's important to handle user input carefully and validate it to prevent buffer overflows and other security vulnerabilities.**
+
+By effectively enabling control flow enforcement technology this would not be able to happen because the malicious attacker would not be able to alter the flow execution of the program once CET is enabled in binaries. To enable CET follow the official documentation[^1]. 
+
+[^1]: Control Flow Enforcement Technology [supporting link](https://learn.microsoft.com/en-us/cpp/build/reference/cetcompat?view=msvc-170).
+
