@@ -2,9 +2,9 @@
 
 # dotnet runtime
 
-- [ ] Attribute model for feature switches with trimming support
-- [ ] UnsafeAccessorAttribute supports generic parameters
-- [ ] Garbage collection
+- [x] Attribute model for feature switches with trimming support
+- [x] UnsafeAccessorAttribute supports generic parameters
+- [x] Garbage collection
 - [ ] Control-flow enforcement technology
 - [ ] .NET install search behavior
 - [ ] Performance improvements
