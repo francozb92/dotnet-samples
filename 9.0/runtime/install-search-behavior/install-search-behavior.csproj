@@ -1,11 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>install_search_behavior</RootNamespace>
+    <RootNamespace>sample_app</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>AppLocal</AppHostDotNetSearch>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>sample_app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>AppRelative</AppHostDotNetSearch>
+    <AppHostRelativeDotNet>./relative/path/to/runtime</AppHostRelativeDotNet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>sample_app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>EnvironmentVariables</AppHostDotNetSearch>
+    <EnvironmentVariable>DOTNET_ROOT=./path/to/runtime</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT(x86)=./path/to/runtime/x86-apps/x86</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT_X86=./path/to/runtime/x64-apps/x86</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT_X64=./path/to/runtime/x64-apps/x64</EnvironmentVariable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>sample_app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>Global</AppHostDotNetSearch>
   </PropertyGroup>
 
 </Project>
