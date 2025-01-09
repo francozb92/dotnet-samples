@@ -72,3 +72,53 @@ There are several reasons why you might want to search for a .NET installation i
 </Project>
 
 ```
+
+## Environment Variables
+
+The `EnvironmentVariables` install search behavior is used to specify a .NET installation location based on environment variables.
+
+When you set `AppHostDotNetSearch` to `EnvironmentVariables`, the .NET runtime will search for a .NET installation location based on the following environment variables:
+
+* `DOTNET_ROOT`: This environment variable specifies the root directory of the .NET installation.
+* `DOTNET_ROOT_<arch>`: This environment variable specifies the root directory of the .NET installation for a specific architecture (e.g. `x86`, `x64`, etc.).
+
+The .NET runtime will search for a .NET installation location in the following order:
+
+1. `DOTNET_ROOT_<arch>`: If the `DOTNET_ROOT_<arch>` environment variable is set, the .NET runtime will search for a .NET installation location in that directory.
+2. `DOTNET_ROOT`: If the `DOTNET_ROOT` environment variable is set, the .NET runtime will search for a .NET installation location in that directory.
+3. Default installation location: If neither of the above environment variables is set, the .NET runtime will search for a .NET installation location in the default installation location (e.g. `C:\Program Files\dotnet` on Windows).
+
+- DOTNET_ROOT is an environment variable that specifies the root directory of the .NET runtime for all architectures (x86, x64, and arm64). This variable is used to specify the location of the .NET runtime for all applications, regardless of the architecture they are running on.
+
+- DOTNET_ROOT(x86) is an environment variable that specifies the root directory of the .NET runtime for the x86 architecture. This variable is used to specify the location of the .NET runtime for 32-bit applications.
+
+- DOTNET_ROOT_X86, on the other hand, is an environment variable that specifies the root directory of the .NET runtime for the x86 architecture, but it is specifically used for 64-bit applications that run on a 32-bit operating system.
+
+- DOTNET_ROOT_X64, on the other hand, is an environment variable that specifies the root directory of the .NET runtime for x64 architecture only. This variable is used to specify the location of the .NET runtime for 64-bit applications that run on a 64-bit operating system.
+
+**.NET Runtime Default Locations**
+
+| Platform | Default Location |
+| --- | --- |
+| Windows | C:\Program Files\dotnet |
+| macOS | /usr/local/share/dotnet |
+| arm64 OS | C:\Program Files\dotnet\x64 (x64 runtimes) |
+| Linux | varies depending on distro and installation method |
+
+```
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>sample_app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>EnvironmentVariables</AppHostDotNetSearch>
+    <EnvironmentVariable>DOTNET_ROOT=./path/to/runtime</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT(x86)=./path/to/runtime/x86-apps/x86</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT_X86=./path/to/runtime/x64-apps/x86</EnvironmentVariable>
+    <EnvironmentVariable>DOTNET_ROOT_X64=./path/to/runtime/x64-apps/x64</EnvironmentVariable>
+  </PropertyGroup>
+</Project>
+
+```
