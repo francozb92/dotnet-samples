@@ -33,6 +33,7 @@ Here are some benefits of using AppLocal:
 4. **Flexibility**: AppLocal applications can be deployed with a specific version of the .NET runtime, which means that you can ensure that the application runs with the correct version of the runtime.
 
 ```
+
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -59,6 +60,7 @@ There are several reasons why you might want to search for a .NET installation i
 5. **Dynamic configuration**: Relative paths can be used to create dynamic configurations that are based on the location of the executable. For example, you can use a relative path to specify a .NET installation that is located in the same directory as the executable, but with a different name.
 
 ```
+
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -106,6 +108,7 @@ The .NET runtime will search for a .NET installation location in the following o
 | Linux | varies depending on distro and installation method |
 
 ```
+
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -118,6 +121,42 @@ The .NET runtime will search for a .NET installation location in the following o
     <EnvironmentVariable>DOTNET_ROOT(x86)=./path/to/runtime/x86-apps/x86</EnvironmentVariable>
     <EnvironmentVariable>DOTNET_ROOT_X86=./path/to/runtime/x64-apps/x86</EnvironmentVariable>
     <EnvironmentVariable>DOTNET_ROOT_X64=./path/to/runtime/x64-apps/x64</EnvironmentVariable>
+  </PropertyGroup>
+</Project>
+
+```
+
+## Global
+
+When you set `AppHostDotNetSearch` to `Global`, the .NET runtime will search for a .NET installation location that refers to the system-wide installation of the .NET runtime.
+
+In other words, when you deploy a .NET application as a Global deployment, the .NET runtime is installed on the target machine as part of the .NET installation. This means that the .NET runtime is available to all applications on the machine, and it is not isolated to a specific application.
+
+Global deployments are typically used when you want to deploy a .NET application to a machine that does not have the .NET runtime installed, or when you want to ensure that the .NET runtime is available to all applications on the machine.
+
+Here are some benefits of deploying a .NET application as a Global deployment:
+
+1. **System-wide availability**: The .NET runtime is installed on the target machine, making it available to all applications.
+2. **No isolation**: The .NET runtime is not isolated to a specific application, which means that it can be shared by multiple applications.
+3. **Easier deployment**: Global deployments are typically easier to deploy, as you only need to install the .NET runtime once on the target machine.
+4. **Better performance**: Global deployments can improve performance, as the .NET runtime is cached on the machine and does not need to be downloaded and installed for each application.
+
+However, Global deployments also have some drawbacks:
+
+1. **Security risks**: Global deployments can increase the risk of security threats, as the .NET runtime is installed on the machine and can be accessed by multiple applications.
+2. **Version conflicts**: Global deployments can lead to version conflicts, as multiple applications may require different versions of the .NET runtime.
+3. **Maintenance challenges**: Global deployments can make maintenance more challenging, as updates to the .NET runtime may affect multiple applications.
+
+```
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>sample_app</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AppHostDotNetSearch>Global</AppHostDotNetSearch>
   </PropertyGroup>
 </Project>
 
