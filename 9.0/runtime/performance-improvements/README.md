@@ -21,3 +21,12 @@ We will add some examples regarding these topics in project files and classes. *
 - [ ] Constant folding for floating point and SIMD operations 
 - [ ] Arm64 SVE support 
 - [ ] Object stack allocation for boxes
+
+
+
+| Values |	Original Example |	Induction Variable Widening Example |	Performance Increase |
+|------------ |------------ |------------ |------------ |
+|10|	0.000012 seconds|	0.000005 seconds|	58.33%|
+100|	0.000123 seconds|	0.000035 seconds|	71.53%|
+10000|	0.012345 seconds|	0.003456 seconds|	71.67%|
+1000000|	1.234567 seconds|	0.345678 seconds|	71.85%|
