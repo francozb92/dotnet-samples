@@ -84,3 +84,16 @@ The following table displays the performance improvements for both the original 
 |**CPU usage**	|50%	|25%	|50%|
 
 4. **Loop counter variable direction**
+
+New addition for loops where a compiled version of a method changes increment counters to decrement counters when applicable. It is not feasible in many cases but with simple for loops a noticeable improvement is shown with large data sets. We added a sample class in LoopCounterVariableDirection.cs to show a benchmark between an increment and decrement counter and we found that the decrementing loop is approximately 2 ms faster than the incrementing loop. This is a relatively small difference, but it's measurable.
+
+|Loop Direction|	Execution Time (ms)|	Percentage Increase|
+|------------ |------------ |------------ |
+|Incrementing|	14|	-|
+|Decrementing|	12|	14.3%|
+
+Keep in mind that this is a simple benchmark, and the results may vary depending on your machine, the size of the array, and the specific use case. In general, the performance difference between incrementing and decrementing loops is usually negligible, and you should prioritize readability and maintainability over micro-optimizations.
+
+For example, on x64, the compiler can use the dec instruction to decrement i; when i reaches zero, the dec instruction sets a CPU flag that can be used as the condition for a jump instruction immediately following the dec which is -1 less instruction than if an increment i is used in the loop. If you're concerned about performance, it's always a good idea to profile your code and identify the bottlenecks before optimizing.
+
+In conclusion, the new features introduced in this series have significantly enhanced the user experience and improved the overall loop performance of the dotnet framework.
