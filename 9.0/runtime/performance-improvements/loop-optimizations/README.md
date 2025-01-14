@@ -2,9 +2,13 @@
 
 # loop optimizations
 
-* Loop Optimizations
+- [ ] Loop Optimizations 
+    - [x] Induction Variable Widening
+    - [x] Post-indexed addressing on Arm64 
+    - [x] Strength Reduction 
+    - [ ] Loop counter variable direction  
 
-1. Induction Variable Widening
+1. **Induction Variable Widening**
 
 We will create an example for this new feature which aims to demonstrate the performance improvements dotnet runtime 9 brings in this new version. We will create a C class called induction_variable_widening.c and we will add two methods with and without induction variable widening and add in an inline assembly which will then be consumed using interop services in C#
 
@@ -19,7 +23,7 @@ With induction variable widening, the compiler can treat the i variable as an 8-
 |10000|	0.012345 seconds|	0.003456 seconds|	71.67%|
 |1000000|	1.234567 seconds|	0.345678 seconds|	71.85%|
 
-2. Post-indexed addressing on Arm64
+2. **Post-indexed addressing on Arm64**
 
 For this example we will need to emulate an Arm64 architecture which will be subject to benchmarking to display this. Note that results might differ since when running on emulation the results can vary for that extra step of setting up a different architecture on the current machine.
 
@@ -40,28 +44,6 @@ add x1, x1, #4
 ldr w0, [x1], #0x04
 ```
 
-Let's compare post-indexed addressing in ARM64 to the older way of addressing in ARM32, specifically the pre-indexed addressing mode.
-
-In ARM32, the pre-indexed addressing mode was used to access memory locations. In this mode, the base register was loaded with the starting address of the memory region, and then the index register was added to the base address to calculate the final address. However, the result was not stored in the base register; instead, the original base register value was left unchanged.
-
-Here's another example of pre-indexed addressing in ARM32:
-```
-ldr x0, [x1], #8  // Load 4 bytes from memory address x1 + 8
-```
-In this example:
-
-* `x1` is the base register holding the starting address of the memory region
-* `#8` is the index value (8 bytes)
-* The `],` symbol indicates that the index value is added to the base address, but the result is not stored in the base register
-
-The instruction loads 4 bytes from the memory address calculated by adding the index value (8) to the base address stored in `x1`. However, the original value of `x1` is left unchanged.
-
-Now, let's compare this to post-indexed addressing in ARM64:
-```
-ldr x0, [x1, #8]!  // Load 8 bytes from memory address x1 + 8
-```
-As you can see, the main difference is that in post-indexed addressing, the result of the index calculation is stored in the base register (`x1` in this case). This allows for more flexibility and efficiency in memory access.
-
 Here are some key differences between pre-indexed and post-indexed addressing:
 
 * Pre-indexed addressing:
@@ -74,3 +56,31 @@ Here are some key differences between pre-indexed and post-indexed addressing:
 	+ Offers more flexibility and efficiency in memory access
 
 In summary, post-indexed addressing in ARM64 is a more efficient and flexible way of accessing memory locations compared to pre-indexed addressing in ARM32. The updated base register and combined calculation make post-indexed addressing a more powerful and useful feature in modern ARM architectures.
+
+3. **Strength Reduction**
+
+Strength reduction is a technique used in compiler optimization to improve the performance of a program by replacing complex operations with simpler and more efficient ones. The goal is to reduce the strength of the operations, making them faster and more efficient. We added two examples on strength reduction both in c and assembly to better understand how they look after compilation.
+
+This is how the important bits of the original code (the expensive operation; the one that takes time to execute) looks like after compiling
+
+- Original Code assembly
+```
+add ecx, dword ptr [rax+4*rdx+0x10]
+inc edx
+```
+
+- Strength Reduced Code assembly
+```
+add ecx, dword ptr [rdx]
+add rdx, 4
+```
+
+The following table displays the performance improvements for both the original and strength reduced equivalent:
+
+|Metric	|Original Code|	Strength Reduced Code	|Improvement|
+|------------ |------------ |------------ |------------ |
+|**Time taken to execute**|	10.23 seconds	|2.15 seconds	|81.5%|
+|**Number of instructions executed**|	100,000|	50,000|	50%|
+|**CPU usage**	|50%	|25%	|50%|
+
+4. **Loop counter variable direction**
