@@ -8,7 +8,7 @@ A few more additions to the dotnet framework to extend the suite of available fu
 
 We will add some examples regarding these topics in project files and classes. **Note that for architecture specific features (arm64) we will try to emulate these somehow and explain on how they perform to previous versions of the framework.**
 
-- [ ] Loop Optimizations 
+- [x] Loop Optimizations 
 - [ ] Inlining Improvements 
 - [ ] PGO Improvements: Type checks and casts 
 - [ ] Arm64 vectorization in .NET libraries 

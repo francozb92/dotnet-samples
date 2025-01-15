@@ -2,11 +2,11 @@
 
 # loop optimizations
 
-- [ ] Loop Optimizations 
+- [x] Loop Optimizations 
     - [x] Induction Variable Widening
     - [x] Post-indexed addressing on Arm64 
     - [x] Strength Reduction 
-    - [ ] Loop counter variable direction  
+    - [x] Loop counter variable direction  
 
 1. **Induction Variable Widening**
 
